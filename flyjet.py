@@ -7,11 +7,14 @@ height = 720
 screen = pygame.display.set_mode((width, height))
 
 hole = [random.randint(0, 1200), height/2-4]
-holeSize = [8, 6]
+holeSize = [4, 6]
+
+hole2 = [random.randint(0, 1200), height/2-4]
+holeSize2 = [4, 6]
 
 char = [565, 550]
 charSize = [150, 80]
-wallSpeed = 0.2
+wallSpeed = 0.3
 charSpeed = 0
 
 
@@ -31,11 +34,14 @@ while True:
 	holeSize[1] += wallSpeed*(holeSize[1]/holeSize[0])
 	hole[0] -= wallSpeed/2 + charSpeed
 	hole[1] -= (wallSpeed*(holeSize[1]/holeSize[0]))/2
+	wallSpeed += 0.0005
 	
 	
-	if holeSize[1] > height:
-		hole = [random.randint(0, 1200), height/2-4]
-		holeSize = [8, 6]
+	if holeSize[1] > height+20:
+		if hole[0] > width+20:
+			hole = [random.randint(0, 1200), height/2-4]
+			holeSize = [4, 6]
+			wallSpeed = 0.3
 	
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
